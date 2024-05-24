@@ -22,7 +22,7 @@ function ChatPage() {
                 setMessages((prevMessages) => [
                     ...prevMessages,
                     {
-                        text: "Hello! How can I assist you today?\n",
+                        text: "해당 질문의 경우 어쩌구저쩌구 엄청나게 긴 답변 내용이 들어갈 수 있습니다. 이런 경우에는 어떻게 처리할까요",
                         sender: "bot",
                     },
                 ]);
@@ -44,7 +44,7 @@ function ChatPage() {
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex justify-between  p-4 bg-blue-500 text-white">
                 <h1 className="text-2xl font-bold">판례 질답 시스템</h1>
-                <h1 className="px-10 text-2xl font-bold">HEY</h1>
+                <h1 className="px-10 text-2xl font-bold">Team HEY</h1>
             </div>
             <div className="flex-1 p-4 overflow-auto">
                 <div className="mx-1">
