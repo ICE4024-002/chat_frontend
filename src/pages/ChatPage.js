@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import ChatMessage from "../component/ChatMessage";
+import { sendMessageToBot } from "../services/chatService";
 
 function ChatPage() {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleSend = () => {
+    const handleSend = async () => {
         if (input.trim()) {
             // 사용자 메시지 추가
             setMessages((prevMessages) => [
@@ -17,19 +18,22 @@ function ChatPage() {
             // 로딩 상태로 설정
             setIsLoading(true);
             // 비동기 작업 시뮬레이션 (예: API 호출)
-            setTimeout(() => {
-                // 봇 응답 추가
+
+            try {
+                const botResponse = await sendMessageToBot(input);
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    {
-                        text: "해당 질문의 경우 어쩌구저쩌구 엄청나게 긴 답변 내용이 들어갈 수 있습니다. 이런 경우에는 어떻게 처리할까요",
-                        sender: "bot",
-                    },
+                    { text: botResponse.answer, sender: "bot" },
                 ]);
-
-                // 로딩 상태 해제
+            } catch (error) {
+                console.error(error);
+                setMessages((prevMessages) => [
+                    ...prevMessages,
+                    { text: "봇 응답에 실패했습니다.", sender: "bot" },
+                ]);
+            } finally {
                 setIsLoading(false);
-            }, 2000); // 2초 후에 봇 응답을 추가
+            }
         }
     };
 
