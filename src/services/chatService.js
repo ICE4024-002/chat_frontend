@@ -1,15 +1,17 @@
 export const sendMessageToBot = async (question) => {
     try {
-        const queryParams = new URLSearchParams({ question }).toString();
-        const url = `http://localhost:8000/answer?${queryParams}`;
+        const requestBody = { question };
+        const url = `http://localhost:8000/answer`;
         const response = await fetch(url, {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify(requestBody),
         });
 
         if (!response.ok) {
+            console.error(response);
             throw new Error("Failed to send message to bot");
         }
 
