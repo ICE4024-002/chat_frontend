@@ -53,7 +53,11 @@ function ChatPage() {
             <div className="flex-1 p-4 overflow-auto">
                 <div className="mx-1">
                     {messages.map((message, index) => (
-                        <ChatMessage key={index} message={message} />
+                        <ChatMessage
+                            key={index}
+                            message={message}
+                            isStarVisible={true}
+                        />
                     ))}
                     {isLoading && (
                         <div className="flex justify-start">

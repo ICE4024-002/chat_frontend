@@ -2,7 +2,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const ChatMessage = ({ message }) => {
+const ChatMessage = ({ message, isStarVisible }) => {
     const [rating, setRating] = React.useState(null);
     const [hover, setHover] = React.useState(null);
     return (
@@ -35,17 +35,21 @@ const ChatMessage = ({ message }) => {
                                     value={ratingValue}
                                     onClick={() => setRating(ratingValue)}
                                 />
-                                <FaStar
-                                    className="star cursor-pointer"
-                                    color={
-                                        ratingValue <= (hover || rating)
-                                            ? "#ffc107"
-                                            : "#e4e5e9"
-                                    }
-                                    size={30}
-                                    onMouseEnter={() => setHover(ratingValue)}
-                                    onMouseLeave={() => setHover(null)}
-                                />
+                                {isStarVisible && (
+                                    <FaStar
+                                        className="star cursor-pointer"
+                                        color={
+                                            ratingValue <= (hover || rating)
+                                                ? "#ffc107"
+                                                : "#e4e5e9"
+                                        }
+                                        size={30}
+                                        onMouseEnter={() =>
+                                            setHover(ratingValue)
+                                        }
+                                        onMouseLeave={() => setHover(null)}
+                                    />
+                                )}
                             </label>
                         );
                     })}
