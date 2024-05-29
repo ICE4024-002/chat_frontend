@@ -1,10 +1,26 @@
 // src/components/ChatMessage.js
 import React from "react";
 import { FaStar } from "react-icons/fa";
+import { postUserFeedback } from "../services/postUserFeedbackService";
 
-const ChatMessage = ({ message, isStarVisible }) => {
+const ChatMessage = ({ message, isStarVisible, qnaId }) => {
     const [rating, setRating] = React.useState(null);
     const [hover, setHover] = React.useState(null);
+
+    const handleRatingClick = async (ratingValue) => {
+        setRating(ratingValue);
+        try {
+            const response = await postUserFeedback(qnaId, ratingValue);
+            if (response) {
+                alert("평가가 등록되었습니다.");
+            } else {
+                alert("평가 등록에 실패했습니다.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("평가 등록에 실패했습니다.");
+        }
+    };
     return (
         <div>
             <div
@@ -33,7 +49,9 @@ const ChatMessage = ({ message, isStarVisible }) => {
                                     name="rating"
                                     className="hidden"
                                     value={ratingValue}
-                                    onClick={() => setRating(ratingValue)}
+                                    onClick={() =>
+                                        handleRatingClick(ratingValue)
+                                    }
                                 />
                                 {isStarVisible && (
                                     <FaStar

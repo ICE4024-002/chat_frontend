@@ -9,7 +9,7 @@ function ChatPage() {
 
     const handleSend = async () => {
         if (input.trim()) {
-            // 사용자 메시지 추가
+            // 사용자 메시지 추가.
             setMessages((prevMessages) => [
                 ...prevMessages,
                 { text: input, sender: "user" },
@@ -23,7 +23,11 @@ function ChatPage() {
                 const botResponse = await sendMessageToBot(input);
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    { text: botResponse.answer, sender: "bot" },
+                    {
+                        text: botResponse.answer,
+                        sender: "bot",
+                        qna_id: botResponse.id,
+                    },
                 ]);
             } catch (error) {
                 console.error(error);
@@ -57,6 +61,7 @@ function ChatPage() {
                             key={index}
                             message={message}
                             isStarVisible={true}
+                            qnaId={message.qna_id}
                         />
                     ))}
                     {isLoading && (
