@@ -10,6 +10,10 @@ function FeedbackDetailPage() {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
 
+    const handleLogoClick = () => {
+        navigation("/feedback");
+    };
+
     useEffect(() => {
         getFeedbackDetail(id)
             .then((data) => {
@@ -47,7 +51,12 @@ function FeedbackDetailPage() {
     return (
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex justify-between  p-4 bg-blue-500 text-white">
-                <h1 className="text-2xl font-bold">전문가 평가 페이지</h1>
+                <h1
+                    className="text-2xl font-bold cursor-pointer"
+                    onClick={handleLogoClick}
+                >
+                    전문가 평가 페이지
+                </h1>
                 <h1 className="px-10 text-2xl font-bold">Team HEY</h1>
             </div>
             <div className="flex-1 p-4 overflow-auto">
