@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ChatMessage from "../component/ChatMessage";
 import { getFeedbackDetail } from "../services/getFeedbackDetailService";
+import { postExpertFeedback } from "../services/postExpertFeedbackService";
 
 function FeedbackDetailPage() {
+    const navigation = useNavigate();
     const { id } = useParams();
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
@@ -24,6 +26,21 @@ function FeedbackDetailPage() {
     const handleKeyDown = (e) => {
         if (e.isComposing || e.keyCode === 229) return;
         if (e.key === "Enter") {
+            handleSend();
+        }
+    };
+
+    const handleSend = async () => {
+        if (input.trim()) {
+            setInput("");
+            const response = await postExpertFeedback(id, input);
+            if (response) {
+                alert("등록되었습니다.");
+                navigation("/feedback");
+                window.location.reload();
+            } else {
+                alert("등록에 실패했습니다.");
+            }
         }
     };
 
@@ -43,12 +60,15 @@ function FeedbackDetailPage() {
             <div className="flex p-4 bg-white border-t">
                 <input
                     type="text"
-                    className="flex-1 p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:border-blue-500"
+                    className="flex-1 p-2 h-16 border border-gray-300 rounded-l-lg focus:outline-none focus:border-blue-500"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
-                <button className="p-2 bg-blue-500 text-white rounded-r-lg">
+                <button
+                    className="p-2 bg-blue-500 text-white rounded-r-lg"
+                    onClick={handleSend}
+                >
                     Send
                 </button>
             </div>
