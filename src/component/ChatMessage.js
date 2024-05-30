@@ -38,7 +38,7 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                     <div className="whitespace-pre-wrap">{message.text}</div>
                 </div>
             </div>
-            {message.sender === "bot" && (
+            {message.sender === "bot" && qnaId && (
                 <div className="flex justify-start my-2">
                     {[...Array(5)].map((_, index) => {
                         const ratingValue = index + 1;
