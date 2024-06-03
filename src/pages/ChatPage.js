@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import ChatMessage from "../component/ChatMessage";
 import { sendMessageToBot } from "../services/chatService";
+import { useNavigate } from "react-router-dom";
 
 function ChatPage() {
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const navigation = useNavigate();
+
+    const handleLogoClick = () => {
+        navigation("/feedback");
+    };
 
     const handleSend = async () => {
         if (input.trim()) {
@@ -51,7 +57,16 @@ function ChatPage() {
     return (
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex justify-between  p-4 bg-blue-500 text-white">
-                <h1 className="text-2xl font-bold">판례 질답 시스템</h1>
+                <div className="flex flex-row text-2xl font-bold items-end">
+                    <h1 className="text-2xl font-bold ">판례 질답 시스템</h1>
+                    <h1
+                        className="text-xl font-bold ml-12 cursor-pointer"
+                        onClick={handleLogoClick}
+                    >
+                        전문가 페이지로 이동
+                    </h1>
+                </div>
+
                 <h1 className="px-10 text-2xl font-bold">Team HEY</h1>
             </div>
             <div className="flex-1 p-4 overflow-auto">
