@@ -33,6 +33,7 @@ function ChatPage() {
                         text: botResponse.answer,
                         sender: "bot",
                         qna_id: botResponse.id,
+                        similarity: botResponse.similarity,
                     },
                 ]);
             } catch (error) {

@@ -2,6 +2,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { postUserFeedback } from "../services/postUserFeedbackService";
+import ReactMarkdown from "react-markdown";
 
 const ChatMessage = ({ message, isStarVisible, qnaId }) => {
     const [rating, setRating] = React.useState(null);
@@ -35,9 +36,16 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                             : "bg-gray-300 text-gray-600"
                     }`}
                 >
-                    <div className="whitespace-pre-wrap">{message.text}</div>
+                    <div className="whitespace-pre-wrap">
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                    </div>
                 </div>
             </div>
+            {message.sender === "bot" && qnaId && (
+                <div className="flex justify-start">
+                    판례 유사도: {parseFloat(message.similarity).toFixed(2)}
+                </div>
+            )}
             {message.sender === "bot" && qnaId && (
                 <div className="flex justify-start my-2">
                     {[...Array(5)].map((_, index) => {
