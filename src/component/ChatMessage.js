@@ -2,6 +2,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { postUserFeedback } from "../services/postUserFeedbackService";
+import ReactMarkdown from "react-markdown";
 
 const ChatMessage = ({ message, isStarVisible, qnaId }) => {
     const [rating, setRating] = React.useState(null);
@@ -35,9 +36,16 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                             : "bg-gray-300 text-gray-600"
                     }`}
                 >
-                    <div className="whitespace-pre-wrap">{message.text}</div>
+                    <div className="whitespace-pre-wrap">
+                        <ReactMarkdown>{message.text}</ReactMarkdown>
+                    </div>
                 </div>
             </div>
+            {message.sender === "bot" && message.similarity && (
+                <div className="flex justify-start">
+                    판례 유사도: {parseFloat(message.similarity).toFixed(2)}
+                </div>
+            )}
             {message.sender === "bot" && qnaId && (
                 <div className="flex justify-start my-2">
                     {[...Array(5)].map((_, index) => {
@@ -72,6 +80,20 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                         );
                     })}
                 </div>
+            )}
+            {message.sender === "bot" && message.prompt && (
+                <label>
+                    <input
+                        class="peer/showLabel absolute scale-0"
+                        type="checkbox"
+                    />
+                    <span class="block max-h-14 max-w-52 overflow-hidden rounded-lg bg-gray-300 text-gray-600 px-4 shadow-lg transition-all duration-300 peer-checked/showLabel:max-h-none peer-checked/showLabel:max-w-full">
+                        <h3 class="flex h-14 cursor-pointer items-center font-bold">
+                            적용된 프롬프트 확인하기
+                        </h3>
+                        <p class="mb-2 whitespace-pre-wrap">{message.prompt}</p>
+                    </span>
+                </label>
             )}
         </div>
     );

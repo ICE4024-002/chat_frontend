@@ -24,10 +24,21 @@ function FeedbackPage() {
         navigation(`/feedback/${id}`);
     };
 
+    const handleLogoClick = () => {
+        navigation("/");
+    };
     return (
         <div className="flex flex-col h-screen bg-gray-100">
             <div className="flex justify-between p-4 bg-blue-500 text-white">
-                <h1 className="text-2xl font-bold">평가 페이지</h1>
+                <div className="flex flex-row text-2xl font-bold items-end">
+                    <h1 className="text-2xl font-bold ">판례 질답 시스템</h1>
+                    <h1
+                        className="text-xl font-bold ml-12 cursor-pointer"
+                        onClick={handleLogoClick}
+                    >
+                        챗봇 페이지로 이동
+                    </h1>
+                </div>
                 <h1 className="px-10 text-2xl font-bold">Team HEY</h1>
             </div>
             <div className="flex p-4">
