@@ -91,7 +91,28 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                         <h3 class="flex h-14 cursor-pointer items-center font-bold">
                             적용된 프롬프트 확인하기
                         </h3>
-                        <p class="mb-2 whitespace-pre-wrap">{message.prompt}</p>
+                        <p class="mb-2 whitespace-pre-wrap">
+                            <span>{message.prompt.base_prompt}</span>
+                            {"\n\n\n\n"}
+                            <span class="text-blue-500 text-4xl font-bold ">
+                                유사판례
+                            </span>
+                            <span>{message.prompt.similar_precedent}</span>
+                            {"\n\n\n\n"}
+                            <span class="text-blue-500 text-4xl font-bold ">
+                                전문가 평가
+                            </span>
+                            <span class="text-green-500">
+                                {message.prompt.expert_evaluation}
+                            </span>
+                            {"\n\n\n\n"}
+                            <span class="text-blue-500 text-4xl font-bold ">
+                                질문자 평가
+                            </span>
+                            <span class="text-purple-500">
+                                {message.prompt.questioner_evaluation}
+                            </span>
+                        </p>
                     </span>
                 </label>
             )}
