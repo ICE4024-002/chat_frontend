@@ -87,7 +87,7 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                         class="peer/showLabel absolute scale-0"
                         type="checkbox"
                     />
-                    <span class="block max-h-14 max-w-52 overflow-hidden rounded-lg bg-gray-300 text-gray-600 px-4 shadow-lg transition-all duration-300 peer-checked/showLabel:max-h-none peer-checked/showLabel:max-w-full">
+                    <span class="block max-h-14 max-w-60 overflow-hidden rounded-lg bg-gray-300 text-gray-600 px-4 shadow-lg transition-all duration-300 peer-checked/showLabel:max-h-none peer-checked/showLabel:max-w-full">
                         <h3 class="flex h-14 cursor-pointer items-center font-bold">
                             적용된 프롬프트 확인하기
                         </h3>
