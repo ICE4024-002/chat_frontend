@@ -102,14 +102,14 @@ const ChatMessage = ({ message, isStarVisible, qnaId }) => {
                             <span class="text-blue-500 text-4xl font-bold ">
                                 전문가 평가
                             </span>
-                            <span class="text-green-500">
+                            <span>
                                 {message.prompt.expert_evaluation}
                             </span>
                             {"\n\n\n\n"}
                             <span class="text-blue-500 text-4xl font-bold ">
                                 질문자 평가
                             </span>
-                            <span class="text-purple-500">
+                            <span>
                                 {message.prompt.questioner_evaluation}
                             </span>
                         </p>
