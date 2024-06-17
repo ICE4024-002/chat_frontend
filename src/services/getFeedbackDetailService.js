@@ -1,6 +1,6 @@
 export const getFeedbackDetail = async (id) => {
     try {
-        const url = `http://119.197.252.21:9000/waiting-questions/${id}`;
+        const url = `http://localhost:8000/waiting-questions/${id}`;
         const response = await fetch(url, {
             method: "GET",
             headers: {

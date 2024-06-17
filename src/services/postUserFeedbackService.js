@@ -4,7 +4,7 @@ export const postUserFeedback = async (qna_id, feedback) => {
             qna_id,
             feedback,
         };
-        const url = `http://119.197.252.21:9000/questioner-feedback`;
+        const url = `http://localhost:8000/questioner-feedback`;
         const response = await fetch(url, {
             method: "POST",
             headers: {

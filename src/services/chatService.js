@@ -1,7 +1,7 @@
 export const sendMessageToBot = async (question) => {
     try {
         const requestBody = { question };
-        const url = `http://119.197.252.21:9000/answer`;
+        const url = `http://localhost:8000/answer`;
         const response = await fetch(url, {
             method: "POST",
             headers: {
