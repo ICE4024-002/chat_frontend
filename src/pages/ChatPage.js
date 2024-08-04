@@ -35,6 +35,7 @@ function ChatPage() {
                         qna_id: botResponse.id,
                         similarity: botResponse.similarity,
                         prompt: botResponse.prompt,
+                        qna: botResponse.qna,
                     },
                 ]);
             } catch (error) {
